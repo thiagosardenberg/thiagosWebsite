@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -374,6 +375,32 @@
     }
   </style>
 </head>
+<!-- AI Chat -->
+<button id="chat-toggle">
+    💬
+</button>
+
+<div id="chat-widget" class="hidden">
+
+    <div class="chat-header">
+        <span>Ask Thiago AI</span>
+        <button id="close-chat">✕</button>
+    </div>
+
+    <div id="messages"></div>
+
+    <div class="chat-input">
+        <textarea
+            id="prompt"
+            placeholder="Ask me about Thiago..."
+            rows="1"></textarea>
+
+        <button id="send">
+            Send
+        </button>
+    </div>
+
+</div>
 <body>
 
 <div id="glow"></div>
