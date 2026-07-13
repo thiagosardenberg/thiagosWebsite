@@ -376,7 +376,22 @@
      /* ════════════════════════════════════════
        RESPONSIVE
     ════════════════════════════════════════ */
-    .chat-window{
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,system-ui,sans-serif;
+}
+
+body{
+    background:#111827;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.chat-window{
     width:420px;
     height:700px;
     background:#1f2937;
@@ -1001,6 +1016,57 @@ button:hover{
       });
     });
   });
+  // === CHAT WIDGET ===
+const chatToggle = document.getElementById('chat-toggle');
+const chatWidget = document.getElementById('chat-widget');
+const closeChat = document.getElementById('close-chat');
+const messages = document.getElementById('messages');
+const promptInput = document.getElementById('prompt');
+const sendBtn = document.getElementById('send');
+
+function toggleChat() {
+  chatWidget.classList.toggle('hidden');
+}
+
+chatToggle.addEventListener('click', toggleChat);
+closeChat.addEventListener('click', toggleChat);
+
+// Optional: close chat when pressing Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !chatWidget.classList.contains('hidden')) {
+    toggleChat();
+  }
+});
+
+// Send message (basic example)
+function addMessage(text, isUser = true) {
+  const msg = document.createElement('div');
+  msg.className = `message ${isUser ? 'user' : 'bot'}`;
+  msg.textContent = text;
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+sendBtn.addEventListener('click', () => {
+  const text = promptInput.value.trim();
+  if (!text) return;
+
+  addMessage(text, true);
+  promptInput.value = '';
+
+  // Simulate bot reply (you can replace this with real backend call later)
+  setTimeout(() => {
+    addMessage("Thanks for asking! Thiago is a CS & Engineering student at UCI building robotics and apps.", false);
+  }, 800);
+});
+
+// Allow sending with Enter (but not new line)
+promptInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    sendBtn.click();
+  }
+});
 </script>
 <!-- AI Chat -->
 <button id="chat-toggle">
