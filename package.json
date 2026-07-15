@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.12",
+    "@vercel/analytics": "^2.0.1",
     "ai": "^7.0.22"
   }
 }
