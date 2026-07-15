@@ -681,7 +681,7 @@
   </div>
   <div id="messages"></div>
   <div class="chat-input">
-    <textarea id="prompt" placeholder="Ask me about Thiago..." rows="1"></textarea>
+    <textarea id="prompt" placeholder="Ask me about Thiago..." rows="1" maxlength="500"></textarea>
     <button id="send">Send</button>
   </div>
 </div>
@@ -789,6 +789,14 @@
         body: JSON.stringify({ message: text })
       });
 
+      if (response.status === 429) {
+        botMsg.textContent = "You're sending messages a bit fast — give it a minute and try again.";
+        return;
+      }
+      if (response.status === 400) {
+        botMsg.textContent = "That message is too long — try something shorter.";
+        return;
+      }
       if (!response.ok || !response.body) throw new Error(`Request failed (${response.status})`);
 
       const reader = response.body.getReader();

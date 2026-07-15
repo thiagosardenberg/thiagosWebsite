@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.12",
     "ai": "^7.0.22"
